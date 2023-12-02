@@ -1,0 +1,9 @@
+{
+	"name": "adf-training-mbu",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "1539b974-ca09-4741-b009-a8624098f58e",
+		"tenantId": "382d13bb-868f-46b1-922d-853a70e87d9f"
+	}
+}
