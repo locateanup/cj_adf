@@ -47,10 +47,34 @@
 					"variableName": "test",
 					"value": "5"
 				}
+			},
+			{
+				"name": "Set variable1_copy1",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Set variable1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "t2",
+					"value": "aa"
+				}
 			}
 		],
 		"variables": {
 			"test": {
+				"type": "String"
+			},
+			"t2": {
 				"type": "String"
 			}
 		},
