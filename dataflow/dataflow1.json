@@ -21,7 +21,11 @@
 					"name": "sink1"
 				}
 			],
-			"transformations": [],
+			"transformations": [
+				{
+					"name": "select1"
+				}
+			],
 			"scriptLines": [
 				"source(output(",
 				"          Year as string,",
@@ -38,22 +42,27 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> source1",
-				"source1 sink(allowSchemaDrift: true,",
+				"source1 select(mapColumn(",
+				"          Year,",
+				"          Industry_aggregation_NZSIOC,",
+				"          Industry_code_NZSIOC,",
+				"          Industry_name_NZSIOC,",
+				"          Units,",
+				"          Variable_code,",
+				"          Variable_name,",
+				"          Variable_category,",
+				"          Value,",
+				"          Industry_code_ANZSIC06",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select1",
+				"select1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     umask: 0022,",
 				"     preCommands: [],",
 				"     postCommands: [],",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true,",
-				"     mapColumn(",
-				"          Year,",
-				"          Industry_aggregation_NZSIOC,",
-				"          Industry_name_NZSIOC,",
-				"          Units,",
-				"          Variable_category,",
-				"          Value,",
-				"          Industry_code_ANZSIC06",
-				"     )) ~> sink1"
+				"     skipDuplicateMapOutputs: true) ~> sink1"
 			]
 		}
 	}
